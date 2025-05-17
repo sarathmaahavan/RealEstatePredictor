@@ -12,4 +12,5 @@ dependencies = [
     "streamlit>=1.45.1",
     "scikit-learn>=1.6.1",
     "djaodjin-pages>=0.8.3",
+    "statsmodels>=0.14.4",
 ]

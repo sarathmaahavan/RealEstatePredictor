@@ -21,18 +21,18 @@ def show():
     st.markdown("""
     <div class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
         <div class="hero-overlay">
-            <h1 class="hero-title">Precise Property Price Prediction Powered by AI</h1>
-            <p class="hero-subtitle">Get accurate home value estimates based on advanced machine learning algorithms and comprehensive market data analysis.</p>
+            <h1 class="hero-title">Riga, Latvia Property Price Prediction</h1>
+            <p class="hero-subtitle">Get accurate home value estimates for Riga's premium neighborhoods including Ieala, powered by AI and comprehensive market data analysis.</p>
             <div>
-                <a href="#property-form" class="hero-btn hero-btn-primary">Get Price Estimate</a>
-                <a href="#learn-more" class="hero-btn">Learn More</a>
+                <a href="#property-form" class="hero-btn hero-btn-primary">Get Your Riga Property Value</a>
+                <a href="#learn-more" class="hero-btn">Explore Ieala Area</a>
             </div>
         </div>
     </div>
     
     <div class="content-container">
-        <h2 id="property-form" style="margin-top: 40px; margin-bottom: 20px;">Find the perfect price for your property</h2>
-        <p>Enter property details below to get an accurate price prediction for the Riga, Latvia real estate market.</p>
+        <h2 id="property-form" style="margin-top: 40px; margin-bottom: 20px;">Find the perfect price for your Riga property</h2>
+        <p>Enter property details below to get an accurate price prediction for Riga, Latvia real estate market. Ieala is one of our featured premium neighborhoods.</p>
     """, unsafe_allow_html=True)
     
     # Create a two-column layout for input form
@@ -216,10 +216,39 @@ def display_property_map():
     # Get property locations from sample data
     locations = get_property_locations()
     
+    # Ieala neighborhood location - make it stand out
+    ieala_location = [56.9600, 24.1300]
+    
     # Create a map centered on Riga, Latvia
     riga_center = [56.9496, 24.1052]  # Riga city center coordinates
     
     m = folium.Map(location=riga_center, zoom_start=12, tiles="CartoDB positron")
+    
+    # Add Streamlit heading for the map instead of trying to add it to the map
+    st.markdown("### Riga, Latvia Real Estate Map")
+    st.markdown("#### Featured Neighborhood: Ieala")
+    
+    # Highlight Ieala neighborhood as a special area
+    folium.CircleMarker(
+        location=ieala_location,
+        radius=200,
+        popup="<b>Ieala Neighborhood</b><br>Premium location with a 1.5x price factor",
+        color="#FFA500",
+        fill=True,
+        fill_color="#FFA500",
+        fill_opacity=0.2,
+        tooltip="Ieala Neighborhood - Premium Area"
+    ).add_to(m)
+    
+    # Add text label for Ieala
+    folium.Marker(
+        ieala_location,
+        icon=folium.DivIcon(
+            icon_size=(150,36),
+            icon_anchor=(75,18),
+            html='<div style="font-size: 14pt; font-weight: bold; color: #FFA500;">Ieala</div>'
+        )
+    ).add_to(m)
     
     # Add markers for each property
     for i, (lat, lon) in enumerate(locations):
@@ -236,12 +265,26 @@ def display_property_map():
         else:
             color = "red"
             icon = "home"
-            
+        
+        # Check if property is in Ieala neighborhood (approximate)
+        distance_to_ieala = ((lat - ieala_location[0])**2 + (lon - ieala_location[1])**2)**0.5
+        is_in_ieala = distance_to_ieala < 0.01
+        
         # Create popup content
+        price_range = np.random.randint(200000, 800000)
+        if is_in_ieala:
+            # Premium pricing for Ieala properties
+            price_range *= 1.5
+            neighborhood = "Ieala"
+            icon = "star"
+        else:
+            neighborhood = "Riga"
+            
         popup_content = f"""
         <div>
             <h4>Property #{i+1}</h4>
-            <p><b>Price:</b> ${np.random.randint(200000, 800000):,}</p>
+            <p><b>Neighborhood:</b> {neighborhood}</p>
+            <p><b>Price:</b> €{price_range:,}</p>
             <p><b>Category:</b> {price_category} priced</p>
             <p><b>Area:</b> {np.random.randint(1000, 3000)} sq ft</p>
         </div>
@@ -311,15 +354,15 @@ def display_market_insights(data):
     
     with col1:
         st.metric(
-            label="Average Price",
-            value=f"${insights['avg_price']:,.2f}",
+            label="Average Price in Riga",
+            value=f"€{insights['avg_price']:,.2f}",
             delta=f"{np.random.randint(-5, 15)}% from last year"
         )
     
     with col2:
         st.metric(
             label="Avg. Price per Sq Ft",
-            value=f"${insights['avg_price_per_sqft']:,.2f}",
+            value=f"€{insights['avg_price_per_sqft']:,.2f}",
             delta=f"{np.random.randint(-3, 10)}% from last year"
         )
     
