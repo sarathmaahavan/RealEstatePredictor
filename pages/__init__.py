@@ -1,0 +1,1 @@
+# Make pages directory a proper package
