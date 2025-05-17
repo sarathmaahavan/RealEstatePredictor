@@ -14,11 +14,80 @@ import pages.dashboard
 
 # Page configuration
 st.set_page_config(
-    page_title="Real Estate Price Predictor",
+    page_title="PropValue - Real Estate Price Predictor",
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Custom CSS to match the design in the image
+st.markdown("""
+<style>
+    .main .block-container {
+        padding-top: 2rem;
+    }
+    h1, h2, h3 {
+        font-weight: 600;
+    }
+    .stButton button {
+        background-color: #1E90FF;
+        color: white;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+    .sidebar .sidebar-content {
+        background-color: #f8f9fa;
+    }
+    /* Header styling */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 1rem;
+    }
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1E90FF;
+    }
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+    .nav-links a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+    }
+    .sign-in-btn {
+        background-color: #1E90FF;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Custom header to match the image
+st.markdown("""
+<div class="header">
+    <div class="logo">PropValue</div>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Predictions</a>
+        <a href="#">Market Trends</a>
+        <a href="#">About</a>
+    </div>
+    <button class="sign-in-btn">Sign In</button>
+</div>
+""", unsafe_allow_html=True)
 
 # Initialize session state variables if they don't exist
 if "saved_properties" not in st.session_state:

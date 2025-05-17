@@ -13,18 +13,24 @@ from assets.image_urls import get_property_images
 
 def show():
     """Display the home page with property details input and price prediction"""
-    st.title("Real Estate Price Predictor")
-    
     # Get sample data
     data = get_sample_data()
     property_images = get_property_images()
     
-    # Display a featured property image
-    featured_img = property_images[0]
-    st.image(featured_img, use_column_width=True)
+    # Hero section with background image and overlay text
+    st.markdown("""
+    <div style="position: relative; text-align: center; color: white;">
+        <img src="https://pixabay.com/get/g1f66f85ac5b99bacb7b163de0c011385407895beb9b82d26ee52d36271c461adb2c783975fe558d1e27d3d8f779fcc6ade7c74361925786150d3d9312ebc6c95_1280.jpg" style="width: 100%; height: 500px; object-fit: cover; border-radius: 10px;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.5); padding: 30px; border-radius: 10px; width: 80%;">
+            <h1 style="font-size: 2.8rem; margin-bottom: 20px;">Precise Property Price Prediction Powered by AI</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Get accurate home value estimates based on advanced machine learning algorithms and comprehensive market data analysis.</p>
+            <button style="background-color: #1E90FF; color: white; border: none; padding: 12px 24px; border-radius: 4px; font-size: 1.1rem; cursor: pointer;">Get Price Estimate</button>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    st.markdown("### Find the perfect price for your property")
-    st.write("Enter property details below to get an accurate price prediction.")
+    st.markdown("<h2 style='margin-top: 40px; margin-bottom: 20px;'>Find the perfect price for your property</h2>", unsafe_allow_html=True)
+    st.write("Enter property details below to get an accurate price prediction for the Riga, Latvia real estate market.")
     
     # Create a two-column layout for input form
     col1, col2 = st.columns(2)
@@ -33,8 +39,8 @@ def show():
         # Property details inputs
         location = st.selectbox(
             "Location", 
-            options=["Downtown", "Suburb", "Urban", "Rural", "Coastal", "Mountain View"],
-            help="Select the location of the property"
+            options=["Riga Center", "Vecriga (Old Town)", "Agenskalns", "Purvciems", "Kengarags", "Jugla", "Imanta", "Ziepniekkalns", "Teika"],
+            help="Select the neighborhood in Riga, Latvia"
         )
         
         property_type = st.selectbox(
@@ -150,9 +156,9 @@ def display_prediction_result(result, property_details):
         upper_bound = result["upper_bound"]
         confidence = result["confidence_score"]
         
-        # Format prices as strings with commas
-        predicted_price_str = f"${predicted_price:,.2f}"
-        price_range = f"${lower_bound:,.2f} - ${upper_bound:,.2f}"
+        # Format prices as strings with commas (using Euros for Latvia)
+        predicted_price_str = f"€{predicted_price:,.2f}"
+        price_range = f"€{lower_bound:,.2f} - €{upper_bound:,.2f}"
         
         # Display the main price prediction
         st.markdown(f"<h2 style='text-align: center;'>{predicted_price_str}</h2>", unsafe_allow_html=True)
@@ -197,18 +203,17 @@ def display_prediction_result(result, property_details):
         
         # Display comparable price per square foot
         price_per_sqft = result["predicted_price"] / property_details["square_feet"]
-        st.markdown(f"**Price per sq ft**: ${price_per_sqft:.2f}")
+        st.markdown(f"**Price per sq ft**: €{price_per_sqft:.2f}")
 
 def display_property_map():
-    """Display an interactive map with sample property locations"""
+    """Display an interactive map with sample property locations in Riga, Latvia"""
     # Get property locations from sample data
     locations = get_property_locations()
     
-    # Create a map centered on the average latitude and longitude
-    avg_lat = sum(loc[0] for loc in locations) / len(locations)
-    avg_lon = sum(loc[1] for loc in locations) / len(locations)
+    # Create a map centered on Riga, Latvia
+    riga_center = [56.9496, 24.1052]  # Riga city center coordinates
     
-    m = folium.Map(location=[avg_lat, avg_lon], zoom_start=12)
+    m = folium.Map(location=riga_center, zoom_start=12, tiles="CartoDB positron")
     
     # Add markers for each property
     for i, (lat, lon) in enumerate(locations):

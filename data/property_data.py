@@ -16,7 +16,7 @@ def get_sample_data():
     
     # Define sample data parameters
     n_properties = 100
-    locations = ["Downtown", "Suburb", "Urban", "Rural", "Coastal", "Mountain View"]
+    locations = ["Riga Center", "Vecriga (Old Town)", "Agenskalns", "Purvciems", "Kengarags", "Jugla", "Imanta", "Ziepniekkalns", "Teika"]
     property_types = ["Single Family Home", "Condo/Apartment", "Townhouse", "Multi-Family", "Luxury Villa"]
     
     # Generate sample data
@@ -37,14 +37,17 @@ def get_sample_data():
     df = pd.DataFrame(data)
     
     # Generate prices based on property characteristics
-    # Base price factors
+    # Base price factors for Riga neighborhoods
     location_factors = {
-        "Downtown": 1.4,
-        "Suburb": 1.0,
-        "Urban": 1.2,
-        "Rural": 0.8,
-        "Coastal": 1.6,
-        "Mountain View": 1.3
+        "Riga Center": 1.6,
+        "Vecriga (Old Town)": 1.8,
+        "Agenskalns": 1.2,
+        "Purvciems": 1.0,
+        "Kengarags": 0.9,
+        "Jugla": 1.0,
+        "Imanta": 1.1,
+        "Ziepniekkalns": 0.95,
+        "Teika": 1.3
     }
     
     property_type_factors = {
@@ -86,14 +89,17 @@ def get_property_locations():
     Returns:
         list: A list of (latitude, longitude) tuples for sample properties
     """
-    # Center points for each location area (approximate values, can be adjusted)
+    # Center points for Riga neighborhoods (approximate values)
     location_centers = {
-        "Downtown": (37.7749, -122.4194),  # San Francisco
-        "Suburb": (37.7050, -122.4650),    # Daly City
-        "Urban": (37.8044, -122.2712),     # Oakland
-        "Rural": (38.0000, -122.7000),     # Marin County
-        "Coastal": (37.5300, -122.4000),   # Half Moon Bay
-        "Mountain View": (37.3861, -122.0839)  # Mountain View
+        "Riga Center": (56.9496, 24.1052),
+        "Vecriga (Old Town)": (56.9476, 24.1087),
+        "Agenskalns": (56.9354, 24.0751),
+        "Purvciems": (56.9561, 24.1968),
+        "Kengarags": (56.9137, 24.1674),
+        "Jugla": (56.9859, 24.2461),
+        "Imanta": (56.9559, 24.0040),
+        "Ziepniekkalns": (56.8990, 24.0876),
+        "Teika": (56.9772, 24.1914)
     }
     
     # Generate 20 random property locations

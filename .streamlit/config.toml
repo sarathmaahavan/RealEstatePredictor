@@ -4,7 +4,11 @@ address = "0.0.0.0"
 port = 5000
 
 [theme]
-primaryColor = "#0e76bd"
+primaryColor = "#1E90FF"
 backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#f0f2f6"
 textColor = "#262730"
+font = "sans serif"
+
+[ui]
+hideTopBar = false
