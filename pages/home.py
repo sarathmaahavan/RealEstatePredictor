@@ -23,13 +23,20 @@ def show():
         <div class="hero-overlay">
             <h1 class="hero-title">Riga, Latvia Property Price Prediction</h1>
             <p class="hero-subtitle">Get accurate home value estimates for Riga's premium neighborhoods including Ieala, powered by AI and comprehensive market data analysis.</p>
-            <div>
-                <a href="#property-form" class="hero-btn hero-btn-primary">Get Your Riga Property Value</a>
-                <a href="#learn-more" class="hero-btn">Explore Ieala Area</a>
-            </div>
         </div>
     </div>
+    """, unsafe_allow_html=True)
     
+    # Use native Streamlit buttons instead of HTML buttons
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col1:
+        st.button("Get Your Riga Property Value", type="primary", key="get_property_btn", 
+                  help="Get an AI-powered valuation for your Riga property")
+    with col2:
+        st.button("Explore Ieala Area", key="explore_ieala_btn",
+                 help="Learn more about the premium Ieala neighborhood")
+    
+    st.markdown("""
     <div class="content-container">
         <h2 id="property-form" style="margin-top: 40px; margin-bottom: 20px;">Find the perfect price for your Riga property</h2>
         <p>Enter property details below to get an accurate price prediction for Riga, Latvia real estate market. Ieala is one of our featured premium neighborhoods.</p>
