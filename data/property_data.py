@@ -16,7 +16,7 @@ def get_sample_data():
     
     # Define sample data parameters
     n_properties = 100
-    locations = ["Riga Center", "Vecriga (Old Town)", "Agenskalns", "Purvciems", "Kengarags", "Jugla", "Imanta", "Ziepniekkalns", "Teika"]
+    locations = ["Riga Center", "Vecriga (Old Town)", "Agenskalns", "Purvciems", "Kengarags", "Jugla", "Imanta", "Ziepniekkalns", "Teika", "Ieala"]
     property_types = ["Single Family Home", "Condo/Apartment", "Townhouse", "Multi-Family", "Luxury Villa"]
     
     # Generate sample data
@@ -47,7 +47,8 @@ def get_sample_data():
         "Jugla": 1.0,
         "Imanta": 1.1,
         "Ziepniekkalns": 0.95,
-        "Teika": 1.3
+        "Teika": 1.3,
+        "Ieala": 1.5  # New premium neighborhood
     }
     
     property_type_factors = {
@@ -99,7 +100,8 @@ def get_property_locations():
         "Jugla": (56.9859, 24.2461),
         "Imanta": (56.9559, 24.0040),
         "Ziepniekkalns": (56.8990, 24.0876),
-        "Teika": (56.9772, 24.1914)
+        "Teika": (56.9772, 24.1914),
+        "Ieala": (56.9600, 24.1300)  # New neighborhood coordinates
     }
     
     # Generate 20 random property locations

@@ -42,7 +42,7 @@ def show():
         # Property details inputs
         location = st.selectbox(
             "Location", 
-            options=["Riga Center", "Vecriga (Old Town)", "Agenskalns", "Purvciems", "Kengarags", "Jugla", "Imanta", "Ziepniekkalns", "Teika"],
+            options=["Riga Center", "Vecriga (Old Town)", "Agenskalns", "Purvciems", "Kengarags", "Jugla", "Imanta", "Ziepniekkalns", "Teika", "Ieala"],
             help="Select the neighborhood in Riga, Latvia"
         )
         
