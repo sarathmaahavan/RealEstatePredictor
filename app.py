@@ -14,7 +14,7 @@ import pages.dashboard
 
 # Page configuration
 st.set_page_config(
-    page_title="PropValue - Real Estate Price Predictor",
+    page_title="PropValue - Riga, Latvia Real Estate Price Predictor",
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -196,7 +196,7 @@ st.markdown('<div class="header-container">', unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1, 4, 1])
 
 with col1:
-    st.markdown('<div class="logo">PropValue</div>', unsafe_allow_html=True)
+    st.markdown('<div class="logo">PropValue<span style="font-size: 14px; display: block; color: #555;">Riga, Latvia</span></div>', unsafe_allow_html=True)
 
 with col2:
     # Use streamlit tabs for navigation

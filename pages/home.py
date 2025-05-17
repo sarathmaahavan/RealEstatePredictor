@@ -13,6 +13,14 @@ from assets.image_urls import get_property_images
 
 def show():
     """Display the home page with property details input and price prediction"""
+    # Add a prominent title banner for Riga and Ieala
+    st.markdown("""
+    <div style="background-color: #1E90FF; color: white; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+        <h1 style="font-size: 28px; margin: 0;">RIGA, LATVIA REAL ESTATE</h1>
+        <p style="font-size: 18px; margin: 5px 0 0 0;">Featuring Premium Properties in Ieala Neighborhood</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     # Get sample data
     data = get_sample_data()
     property_images = get_property_images()
