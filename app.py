@@ -111,7 +111,7 @@ st.markdown("""
     .hero-section {
         position: relative;
         width: 100%;
-        height: 500px;
+        height: 600px;
         background-size: cover;
         background-position: center;
         color: white;
@@ -124,7 +124,7 @@ st.markdown("""
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.4);
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -132,16 +132,18 @@ st.markdown("""
     }
     
     .hero-title {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
         max-width: 800px;
+        text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
     }
     
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-bottom: 2rem;
-        max-width: 600px;
+        max-width: 700px;
+        text-shadow: 0px 1px 3px rgba(0,0,0,0.3);
     }
     
     .hero-btn {
@@ -155,11 +157,21 @@ st.markdown("""
         cursor: pointer;
         text-decoration: none;
         margin-right: 1rem;
+        transition: all 0.2s ease;
+    }
+    
+    .hero-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     
     .hero-btn-primary {
         background-color: #1E90FF;
         color: white;
+    }
+    
+    .hero-btn-primary:hover {
+        background-color: #0070e0;
     }
 </style>
 """, unsafe_allow_html=True)

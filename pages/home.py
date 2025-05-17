@@ -19,11 +19,14 @@ def show():
     
     # Hero section with background image and overlay text - exact styling from the reference image
     st.markdown("""
-    <div class="hero-section" style="background-image: url('https://pixabay.com/get/g1f66f85ac5b99bacb7b163de0c011385407895beb9b82d26ee52d36271c461adb2c783975fe558d1e27d3d8f779fcc6ade7c74361925786150d3d9312ebc6c95_1280.jpg');">
+    <div class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
         <div class="hero-overlay">
             <h1 class="hero-title">Precise Property Price Prediction Powered by AI</h1>
             <p class="hero-subtitle">Get accurate home value estimates based on advanced machine learning algorithms and comprehensive market data analysis.</p>
-            <a href="#property-form" class="hero-btn hero-btn-primary">Get Price Estimate</a>
+            <div>
+                <a href="#property-form" class="hero-btn hero-btn-primary">Get Price Estimate</a>
+                <a href="#learn-more" class="hero-btn">Learn More</a>
+            </div>
         </div>
     </div>
     
