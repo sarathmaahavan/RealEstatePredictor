@@ -191,51 +191,41 @@ predictions_class = "active-nav-link" if st.session_state.active_page == "Predic
 market_trends_class = "active-nav-link" if st.session_state.active_page == "Market Trends" else ""
 about_class = "active-nav-link" if st.session_state.active_page == "About" else ""
 
-# Create the HTML for the header with navigation
-header_html = f"""
-<div class="header">
-    <div class="logo">PropValue</div>
-    <div class="nav-links">
-        <a href="#" class="{home_class}" onclick="handleNavClick('Home'); return false;">Home</a>
-        <a href="#" class="{predictions_class}" onclick="handleNavClick('Predictions'); return false;">Predictions</a>
-        <a href="#" class="{market_trends_class}" onclick="handleNavClick('Market Trends'); return false;">Market Trends</a>
-        <a href="#" class="{about_class}" onclick="handleNavClick('About'); return false;">About</a>
-    </div>
-    <button class="sign-in-btn">Sign In</button>
-</div>
-"""
+# Create a streamlit-native navigation header
+st.markdown('<div class="header-container">', unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1, 4, 1])
 
-# Add JavaScript separately (not inside the f-string)
-js_code = """
-<script>
-function handleNavClick(page) {
-    // For debugging
-    console.log("Navigation clicked: " + page);
+with col1:
+    st.markdown('<div class="logo">PropValue</div>', unsafe_allow_html=True)
+
+with col2:
+    # Use streamlit tabs for navigation
+    tabs = st.tabs(["Home", "Predictions", "Market Trends", "About"])
     
-    // Try to set the value using a form submit approach instead
-    const form = document.querySelector('form');
-    if (form) {
-        const input = form.querySelector('input');
-        if (input) {
-            input.value = page;
-            form.submit();
-        }
-    }
-}
-</script>
-"""
+    # Set active tab based on session state
+    active_tab_index = ["Home", "Predictions", "Market Trends", "About"].index(
+        st.session_state.active_page
+    )
+    
+    # Handle tab selection
+    # We use st.session_state changes to detect tab click
+    for i, tab in enumerate(tabs):
+        with tab:
+            if i == 0:  # Home
+                if st.button("Home", key=f"nav_home"):
+                    set_page("Home")
+            elif i == 1:  # Predictions
+                if st.button("Predictions", key=f"nav_predictions"):
+                    set_page("Predictions")
+            elif i == 2:  # Market Trends
+                if st.button("Market Trends", key=f"nav_market"):
+                    set_page("Market Trends")
+            elif i == 3:  # About
+                if st.button("About", key=f"nav_about"):
+                    set_page("About")
 
-# Combine the HTML and JavaScript
-full_header = header_html + js_code
-
-st.markdown(full_header, unsafe_allow_html=True)
-
-# Get click events from the navigation
-nav_placeholder = st.empty()
-nav_clicked = nav_placeholder.text_input("", key="nav_input", label_visibility="collapsed")
-
-if nav_clicked and nav_clicked != st.session_state.active_page:
-    set_page(nav_clicked)
+with col3:
+    st.button("Sign In", key="sign_in_btn")
 
 # Initialize session state variables if they don't exist
 if "saved_properties" not in st.session_state:
