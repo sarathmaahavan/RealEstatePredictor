@@ -17,20 +17,20 @@ def show():
     data = get_sample_data()
     property_images = get_property_images()
     
-    # Hero section with background image and overlay text
+    # Hero section with background image and overlay text - exact styling from the reference image
     st.markdown("""
-    <div style="position: relative; text-align: center; color: white;">
-        <img src="https://pixabay.com/get/g1f66f85ac5b99bacb7b163de0c011385407895beb9b82d26ee52d36271c461adb2c783975fe558d1e27d3d8f779fcc6ade7c74361925786150d3d9312ebc6c95_1280.jpg" style="width: 100%; height: 500px; object-fit: cover; border-radius: 10px;">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.5); padding: 30px; border-radius: 10px; width: 80%;">
-            <h1 style="font-size: 2.8rem; margin-bottom: 20px;">Precise Property Price Prediction Powered by AI</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;">Get accurate home value estimates based on advanced machine learning algorithms and comprehensive market data analysis.</p>
-            <button style="background-color: #1E90FF; color: white; border: none; padding: 12px 24px; border-radius: 4px; font-size: 1.1rem; cursor: pointer;">Get Price Estimate</button>
+    <div class="hero-section" style="background-image: url('https://pixabay.com/get/g1f66f85ac5b99bacb7b163de0c011385407895beb9b82d26ee52d36271c461adb2c783975fe558d1e27d3d8f779fcc6ade7c74361925786150d3d9312ebc6c95_1280.jpg');">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Precise Property Price Prediction Powered by AI</h1>
+            <p class="hero-subtitle">Get accurate home value estimates based on advanced machine learning algorithms and comprehensive market data analysis.</p>
+            <a href="#property-form" class="hero-btn hero-btn-primary">Get Price Estimate</a>
         </div>
     </div>
-    """, unsafe_allow_html=True)
     
-    st.markdown("<h2 style='margin-top: 40px; margin-bottom: 20px;'>Find the perfect price for your property</h2>", unsafe_allow_html=True)
-    st.write("Enter property details below to get an accurate price prediction for the Riga, Latvia real estate market.")
+    <div class="content-container">
+        <h2 id="property-form" style="margin-top: 40px; margin-bottom: 20px;">Find the perfect price for your property</h2>
+        <p>Enter property details below to get an accurate price prediction for the Riga, Latvia real estate market.</p>
+    """, unsafe_allow_html=True)
     
     # Create a two-column layout for input form
     col1, col2 = st.columns(2)
@@ -141,6 +141,9 @@ def show():
     # Display a couple of market insights
     st.markdown("### Market Insights")
     display_market_insights(data)
+    
+    # Close the content container
+    st.markdown("</div>", unsafe_allow_html=True)
 
 def display_prediction_result(result, property_details):
     """Display the prediction results with attractive visuals"""
